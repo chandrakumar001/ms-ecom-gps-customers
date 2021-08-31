@@ -1,0 +1,174 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: customer
+servers:
+  - url: /api
+paths:
+  "/v1/people":
+    x-swagger-router-controller: customer
+    get:
+      summary: Get all customer for customer.
+      operationId: queryAllcustomer
+      tags:
+        - customer details
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customer-list-response"
+        "400":
+          description: invalid request
+        "404":
+          description: customer not found
+    post:
+      summary: create a new customer for customer
+      tags:
+        - customer details
+      operationId: createcustomer
+      requestBody:
+        $ref: "#/components/requestBodies/customer-bare"
+      responses:
+        "201":
+          description: customer created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customer-bare"
+        "400":
+          description: error, tbd.
+  "/v1/people/{customer-id}":
+    x-swagger-router-controller: customer
+    get:
+      summary: get customer by id
+      tags:
+        - customer details
+      operationId: getcustomer
+      parameters:
+        - name: customer-id
+          in: path
+          required: true
+          description: ID of the customer
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customer"
+        "400":
+          description: Invalid ID
+        "404":
+          description: customer not found
+    put:
+      summary: update an customer
+      tags:
+        - customer details
+      operationId: updatecustomer
+      parameters:
+        - name: customer-id
+          in: path
+          required: true
+          description: ID of the customer
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/customer-bare"
+      responses:
+        "202":
+          description: customer updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/customer-bare"
+        "400":
+          description: error, tbd.
+    delete:
+      summary: delete customer
+      tags:
+        - customer details
+      operationId: deletecustomer
+      parameters:
+        - name: customer-id
+          in: path
+          required: true
+          description: ID of the hardware
+          schema:
+            type: string
+      responses:
+        "400":
+          description: Invalid ID hardware
+        "404":
+          description: hardware not found
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+components:
+  requestBodies:
+    customer-bare:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/customer-bare"
+      description: new customer
+  schemas:
+    ###
+    ###  hardware object
+    ###
+    customer-bare:
+      required: #null
+        - emailId
+        - age
+        - favouriteColour
+      type: object
+      properties:
+        emailId:
+          type: string
+          example: 'john.k@gmail.com'
+          minLength: 1  #length: empty
+        customerName:
+          $ref: "#/components/schemas/customer-name"
+        age:
+          type: string
+          example: '18'
+          minLength: 1  #length: empty
+        favouriteColour:
+          type: string
+          example: 'red'
+          minLength: 1  #length: empty
+    customer-name:
+      required: #null
+        - firstName
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: 'john'
+          minLength: 1  #length: empty
+        lastName:
+          type: string
+          example: 'k'
+
+    customer-list-response:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 15
+        customer:
+          type: array
+          items:
+            $ref: "#/components/schemas/customer"
+    customer:
+      type: object
+      properties:
+        customerId:
+          type: string
+          example: e2a40b33-a11a-4938-8111-07acf5758977
+          format: uuid
+        data:
+          $ref: "#/components/schemas/customer-bare"

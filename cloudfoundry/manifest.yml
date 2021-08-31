@@ -1,0 +1,14 @@
+---
+applications:
+  - name: ecom-gps-customers
+    memory: ((memory))
+    disk_quota: ((diskquota))
+    instances: ((instances))
+    buildpacks:
+      - java_buildpack
+    env:
+      JBP_CONFIG_OPEN_JDK_JRE: ((jbpConfig))
+    random-route: false
+    path: ../target/ecom-gps-customers-2021.8.1.jar
+#    services:
+#      - another-service-bind

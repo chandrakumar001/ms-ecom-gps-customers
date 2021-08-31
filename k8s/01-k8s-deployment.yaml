@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecom-gps-customers
+  labels:
+    purpose: ecom-gps-customers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecom-gps-customers
+  template:
+    metadata:
+      name: ecom-gps-customers
+      labels:
+        app: ecom-gps-customers
+    spec:
+      imagePullSecrets:
+        - name: repo-treescale-secret
+      containers:
+      - name: ecom-gps-customers
+        image: repo.treescale.com/chandrakumar001/ms-ecom-gps-customers:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+            protocol: TCP

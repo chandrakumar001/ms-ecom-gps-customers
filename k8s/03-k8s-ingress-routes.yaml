@@ -1,0 +1,30 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ecom-gps-customers-ingress-route
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  #Gerneral Purpose system
+  - match: Host(`ecom-gps-customers.apps.chandran-edu.com`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: ecom-gps-customers-svc
+      port: 80     
+    middlewares:
+    - name: ecom-gps-customers-middleware
+  tls:
+    certResolver: myresolver    
+    
+---    
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: ecom-gps-customers-middleware
+spec:
+  stripPrefix:
+    prefixes:
+      - /

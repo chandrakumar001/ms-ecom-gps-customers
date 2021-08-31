@@ -1,0 +1,3 @@
+UPDATE customer.customer SET customer_id= '9ff7233a-9c63-4dbd-ab33-0d539aae0905' WHERE email_id='test@gmail.com';
+
+

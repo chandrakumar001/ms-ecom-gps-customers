@@ -1,0 +1,20 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="CustomerAPIIT-local" type="JUnit" factoryName="JUnit" singleton="false">
+    <module name="ecom-gps-customers" />
+    <useClassPathOnly />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.chandrakumar.ms.api.customer.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="PACKAGE_NAME" value="com.chandrakumar.ms.api.customer" />
+    <option name="MAIN_CLASS_NAME" value="com.chandrakumar.ms.api.customer.CustomerAPIIT" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="class" />
+    <option name="PARAMETERS" value="" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
