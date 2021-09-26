@@ -306,24 +306,9 @@ Show all apps:
 
 logging: Clean up activity for before request and after request by using mdc approach 
 
-Tracking: Will be hold all request meta data such as jwt,x-request and x-businessTxId and externalId
- 
- - [x] X-BusinessTx-ID: meaning perform current execution for request
- - [x] X-Request-ID: where the request is originated
- - [x] app-name: application name
- 
 Components | ORDER
 -----------| -------------
 logging    | 0
-Tracking   | 1
-
-Example:
-
-    2021-03-10 13:28:05.175  INFO [ app-name=ecom-gps-customers, X-BusinessTx-ID=6f17d90c-3964-4e07-8b7b-638b7eb69aec, X-Request-ID=1c0386cf-dfa7-4260-b6a8-1273d26aa57b ] ::: [080-exec-1] c.c.m.a.p.s.DefaultcustomerQueryService     : called getAllcustomer begin
-    Hibernate: select customer0_.customer_id as customer_i1_0_, customer0_.created_by as created_2_0_, customer0_.creation_date as creation3_0_, customer0_.last_modified_by as last_mod4_0_, customer0_.last_modified_date as last_mod5_0_, customer0_.action as action6_0_, customer0_.age as age7_0_, customer0_.email_id as email_id8_0_, customer0_.favourite_colour as favourit9_0_, customer0_.first_name as first_n10_0_, customer0_.last_name as last_na11_0_ from customer.customer customer0_ where customer0_.action<>'DELETED' limit ? offset ?
-    Hibernate: select count(customer0_.customer_id) as col_0_0_ from customer.customer customer0_ where customer0_.action<>'DELETED'
-    2021-03-10 13:28:05.523  INFO [ app-name=ecom-gps-customers, X-BusinessTx-ID=6f17d90c-3964-4e07-8b7b-638b7eb69aec, X-Request-ID=1c0386cf-dfa7-4260-b6a8-1273d26aa57b ] ::: [080-exec-1] c.c.m.a.p.s.DefaultcustomerQueryService     : called getAllcustomer end
-
 
 ##### Enable  OWASP’s for this application
  
