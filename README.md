@@ -183,11 +183,11 @@ PUT  https://ecom-gps-customers.apps.chandran-edu.com/ecoms/gps/v1/customers/ff8
       }
     }
 
-Delete: https://ecom-gps-customers.mybluemix.net/v1/people/9ff7233a-9c63-4dbd-ab33-0d539aae0905
+Delete: https://ecom-gps-customers.apps.chandran-edu.com/ecoms/gps/v1/customers/9ff7233a-9c63-4dbd-ab33-0d539aae0905
      
      refer output folder :: "delete-customer.PNG"
 
-GET  https://ecom-gps-customers.mybluemix.net/v1/people
+GET  https://ecom-gps-customers.apps.chandran-edu.com/ecoms/gps/v1/customers
     show all list of customer
     
     refer output folder :: "get-customer.PNG"
