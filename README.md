@@ -33,14 +33,14 @@ This project for Customers microservice and used lasted version spring boot, swa
 #### Clone the project
    
    
-        git clone https://github.com/chandrakumar001/ms-customer
+        git clone https://github.com/chandrakumar001/ms-ecom-gps-customers
 
 #### Running Tests and Skipping Unit Tests and Integration Tests
 
 * To skip all tests (unit and integration tests) when install the package into the local repository via command line add the parameter -DskipTests=true (The flag is honored by Surefire, Failsafe and the Compiler Plugin).
 
         
-        cd ms-customer
+        cd ms-ecom-gps-customers
         mvn clean install -DskipTests=true 
 
 * To explicit skip unit tests just add the parameter  -Dskip.unit.tests=true.
