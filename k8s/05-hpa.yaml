@@ -4,8 +4,10 @@ metadata:
   name: ecom-gps-customers
 spec:
   scaleTargetRef:
-    kind: ReplicaSet
+    #    apiVersion: extensions/v1beta1
+    apiVersion: apps/v1
+    kind: Deployment
     name: ecom-gps-customers
   minReplicas: 1
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 10
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 50
