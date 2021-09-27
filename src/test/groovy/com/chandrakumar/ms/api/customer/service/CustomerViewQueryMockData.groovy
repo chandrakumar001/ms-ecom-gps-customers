@@ -1,9 +1,8 @@
 package com.chandrakumar.ms.api.customer.service
 
 
-import com.chandrakumar.ms.api.customer.entity.Customer
 import com.chandrakumar.ms.api.customer.entity.CustomerName
-import com.chandrakumar.ms.api.customer.entity.CustomerViewQuery
+import com.chandrakumar.ms.api.customer.entity.CustomerQueryView
 import com.chandrakumar.ms.api.customer.swagger.model.CustomerBareDTO
 import com.chandrakumar.ms.api.customer.swagger.model.CustomerDTO
 import com.chandrakumar.ms.api.customer.swagger.model.CustomerNameDTO
@@ -52,7 +51,7 @@ class CustomerViewQueryMockData {
         customerNameDTO
     }
 
-    static CustomerViewQuery customerViewQuery(String emailId,
+    static CustomerQueryView customerViewQuery(String emailId,
                                                String firstName,
                                                String lastName,
                                                String age) {
@@ -61,7 +60,7 @@ class CustomerViewQueryMockData {
                 firstName,
                 lastName
         )
-        CustomerViewQuery customer = new CustomerViewQuery()
+        CustomerQueryView customer = new CustomerQueryView()
         customer.emailId = emailId
         customer.customerName = customerName
         customer.age = age

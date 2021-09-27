@@ -1,6 +1,6 @@
 package com.chandrakumar.ms.api.customer.repository;
 
-import com.chandrakumar.ms.api.customer.entity.CustomerViewQuery;
+import com.chandrakumar.ms.api.customer.entity.CustomerQueryView;
 import lombok.NonNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,14 +15,14 @@ import java.util.UUID;
 import static com.chandrakumar.ms.api.customer.util.CustomerConstant.CUSTOMER_ID;
 
 @Repository
-public interface CustomerViewQueryRepository extends JpaRepository<CustomerViewQuery, UUID> {
+public interface CustomerQueryViewRepository extends JpaRepository<CustomerQueryView, UUID> {
 
     @Override
-    @Query("select c from CustomerViewQuery c")
-    Page<CustomerViewQuery> findAll(Pageable customerViewQueryPageable);
+    @Query("select c from CustomerQueryView c")
+    Page<CustomerQueryView> findAll(Pageable customerViewQueryPageable);
 
-    @Query("select c from CustomerViewQuery c where c.customerId=:customerId")
-    Optional<CustomerViewQuery> findByCustomerId(
+    @Query("select c from CustomerQueryView c where c.customerId=:customerId")
+    Optional<CustomerQueryView> findByCustomerId(
             @Param(CUSTOMER_ID) @NonNull final UUID customerId
     );
 }

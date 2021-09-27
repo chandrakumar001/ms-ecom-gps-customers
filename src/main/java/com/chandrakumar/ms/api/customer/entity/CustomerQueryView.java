@@ -9,9 +9,9 @@ import java.util.UUID;
 import static javax.persistence.EnumType.STRING;
 
 @Entity
-@Table(name = "customer_view", schema = "customer")
+@Table(name = "customer_query_view", schema = "customer")
 @Data
-public class CustomerViewQuery {
+public class CustomerQueryView {
 
     @Id
     private UUID customerId;

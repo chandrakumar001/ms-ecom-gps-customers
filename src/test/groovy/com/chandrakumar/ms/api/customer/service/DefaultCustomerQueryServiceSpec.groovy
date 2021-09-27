@@ -1,9 +1,8 @@
 package com.chandrakumar.ms.api.customer.service
 
 import com.chandrakumar.ms.api.common.audit.Action
-import com.chandrakumar.ms.api.customer.entity.Customer
-import com.chandrakumar.ms.api.customer.entity.CustomerViewQuery
-import com.chandrakumar.ms.api.customer.repository.CustomerViewQueryRepository
+import com.chandrakumar.ms.api.customer.entity.CustomerQueryView
+import com.chandrakumar.ms.api.customer.repository.CustomerQueryViewRepository
 import com.chandrakumar.ms.api.customer.swagger.model.CustomerDTO
 import com.chandrakumar.ms.api.customer.swagger.model.CustomerListResponseDTO
 import org.springframework.data.domain.PageImpl
@@ -27,7 +26,7 @@ class DefaultCustomerQueryServiceSpec extends Specification {
     public static final int TOTAL_RECORD_NOT_FOUND = 0
 
     private CustomerQueryService queryService
-    def customerViewQueryRepository = Mock(CustomerViewQueryRepository)
+    def customerViewQueryRepository = Mock(CustomerQueryViewRepository)
 
     /**
      * Runs before each test method, like the JUnit Before
@@ -44,7 +43,7 @@ class DefaultCustomerQueryServiceSpec extends Specification {
         def lastName = "kumar"
         def age = "28"
 
-        final CustomerViewQuery customerViewQuery = customerViewQuery(emailId, firstName, lastName, age)
+        final CustomerQueryView customerViewQuery = customerViewQuery(emailId, firstName, lastName, age)
         customerViewQuery.action = Action.UPDATED
 
         customerViewQueryRepository.findAll(_ as Pageable) >> new PageImpl<>(
@@ -101,7 +100,7 @@ class DefaultCustomerQueryServiceSpec extends Specification {
         def lastName = "kumar"
         def age = "28"
 
-        final CustomerViewQuery customerViewQuery = customerViewQuery(emailId, firstName, lastName, age)
+        final CustomerQueryView customerViewQuery = customerViewQuery(emailId, firstName, lastName, age)
         customerViewQuery.customerId = customerIdUUID
         customerViewQuery.action = Action.UPDATED
 

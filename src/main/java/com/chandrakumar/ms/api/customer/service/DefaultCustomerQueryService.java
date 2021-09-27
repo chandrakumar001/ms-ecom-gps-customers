@@ -1,8 +1,8 @@
 package com.chandrakumar.ms.api.customer.service;
 
-import com.chandrakumar.ms.api.customer.entity.CustomerViewQuery;
-import com.chandrakumar.ms.api.customer.mapper.CustomerViewQueryMapper;
-import com.chandrakumar.ms.api.customer.repository.CustomerViewQueryRepository;
+import com.chandrakumar.ms.api.customer.entity.CustomerQueryView;
+import com.chandrakumar.ms.api.customer.mapper.CustomerQueryViewMapper;
+import com.chandrakumar.ms.api.customer.repository.CustomerQueryViewRepository;
 import com.chandrakumar.ms.api.customer.swagger.model.CustomerDTO;
 import com.chandrakumar.ms.api.customer.swagger.model.CustomerListResponseDTO;
 import com.chandrakumar.ms.api.error.FieldValidationException;
@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static com.chandrakumar.ms.api.customer.mapper.CustomerViewQueryMapper.getCustomerListResponseDTO;
-import static com.chandrakumar.ms.api.customer.mapper.CustomerViewQueryMapper.mapToCustomerDTO;
+import static com.chandrakumar.ms.api.customer.mapper.CustomerQueryViewMapper.getCustomerListResponseDTO;
+import static com.chandrakumar.ms.api.customer.mapper.CustomerQueryViewMapper.mapToCustomerDTO;
 import static com.chandrakumar.ms.api.customer.util.CustomerErrorCodeConstant.*;
 import static com.chandrakumar.ms.api.customer.util.PageRequestBuild.getPageRequest;
 import static com.chandrakumar.ms.api.customer.validation.PageRequestValidator.validateRequest;
@@ -31,10 +31,10 @@ import static com.chandrakumar.ms.api.util.CommonUtil.validateUUID;
 @Slf4j
 public class DefaultCustomerQueryService implements CustomerQueryService {
 
-    private final CustomerViewQueryRepository customerViewQueryRepository;
+    private final CustomerQueryViewRepository customerQueryViewRepository;
 
-    public DefaultCustomerQueryService(@Autowired CustomerViewQueryRepository customerViewQueryRepository) {
-        this.customerViewQueryRepository = customerViewQueryRepository;
+    public DefaultCustomerQueryService(@Autowired CustomerQueryViewRepository customerQueryViewRepository) {
+        this.customerQueryViewRepository = customerQueryViewRepository;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class DefaultCustomerQueryService implements CustomerQueryService {
                 size
         );
 
-        final Page<CustomerViewQuery> pageCustomer = customerViewQueryRepository.findAll(
+        final Page<CustomerQueryView> pageCustomer = customerQueryViewRepository.findAll(
                 pageRequest
         );
         final List<CustomerDTO> customerDTOList = getCustomerDTOList(
@@ -60,14 +60,14 @@ public class DefaultCustomerQueryService implements CustomerQueryService {
         return getCustomerListResponseDTO(customerDTOList);
     }
 
-    private List<CustomerDTO> getCustomerDTOList(final Page<CustomerViewQuery> pageCustomer) {
+    private List<CustomerDTO> getCustomerDTOList(final Page<CustomerQueryView> pageCustomer) {
 
-        final List<CustomerViewQuery> customerList = pageCustomer.getContent();
+        final List<CustomerQueryView> customerList = pageCustomer.getContent();
         if (CollectionUtils.isEmpty(customerList)) {
             throw new NoRecordFoundException(ERROR_NO_RECORD_FOUND);
         }
         return customerList.stream()
-                .map(CustomerViewQueryMapper::mapToCustomerDTO)
+                .map(CustomerQueryViewMapper::mapToCustomerDTO)
                 .collect(Collectors.toList());
     }
 
@@ -81,7 +81,7 @@ public class DefaultCustomerQueryService implements CustomerQueryService {
 
         final StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        final CustomerViewQuery existingCustomer = existingCustomerById(customerIdUUID);
+        final CustomerQueryView existingCustomer = existingCustomerById(customerIdUUID);
         stopWatch.stop();
         log.info("Execution time of " + stopWatch.getTotalTimeMillis() + "ms");
 
@@ -89,8 +89,8 @@ public class DefaultCustomerQueryService implements CustomerQueryService {
         return mapToCustomerDTO(existingCustomer);
     }
 
-    private CustomerViewQuery existingCustomerById(final UUID customerId) {
-        return customerViewQueryRepository.findByCustomerId(customerId)
+    private CustomerQueryView existingCustomerById(final UUID customerId) {
+        return customerQueryViewRepository.findByCustomerId(customerId)
                 .orElseThrow(DefaultCustomerQueryService::customerNotFoundException);
     }
 

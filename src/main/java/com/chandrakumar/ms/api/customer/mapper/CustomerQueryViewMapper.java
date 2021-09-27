@@ -1,7 +1,7 @@
 package com.chandrakumar.ms.api.customer.mapper;
 
 import com.chandrakumar.ms.api.customer.entity.CustomerName;
-import com.chandrakumar.ms.api.customer.entity.CustomerViewQuery;
+import com.chandrakumar.ms.api.customer.entity.CustomerQueryView;
 import com.chandrakumar.ms.api.customer.swagger.model.CustomerBareDTO;
 import com.chandrakumar.ms.api.customer.swagger.model.CustomerDTO;
 import com.chandrakumar.ms.api.customer.swagger.model.CustomerListResponseDTO;
@@ -9,10 +9,10 @@ import com.chandrakumar.ms.api.customer.swagger.model.CustomerNameDTO;
 
 import java.util.List;
 
-public class CustomerViewQueryMapper {
+public class CustomerQueryViewMapper {
 
-    private CustomerViewQueryMapper() {
-        throw new IllegalStateException("CustomerViewQueryMapper class");
+    private CustomerQueryViewMapper() {
+        throw new IllegalStateException("CustomerQueryViewMapper class");
     }
 
     public static CustomerListResponseDTO getCustomerListResponseDTO(
@@ -24,28 +24,28 @@ public class CustomerViewQueryMapper {
         return customerListResponseDTO;
     }
 
-    public static CustomerDTO mapToCustomerDTO(final CustomerViewQuery customerViewQuery) {
+    public static CustomerDTO mapToCustomerDTO(final CustomerQueryView customerQueryView) {
 
         final CustomerNameDTO customerNameDTO = mapToCustomerNameDTO(
-                customerViewQuery.getCustomerName()
+                customerQueryView.getCustomerName()
         );
         final CustomerBareDTO customerBareDTO = mapToCustomerBareDTO(
-                customerViewQuery,
+                customerQueryView,
                 customerNameDTO
         );
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setData(customerBareDTO);
-        customerDTO.setCustomerId(customerViewQuery.getCustomerId());
+        customerDTO.setCustomerId(customerQueryView.getCustomerId());
         return customerDTO;
     }
 
-    private static CustomerBareDTO mapToCustomerBareDTO(final CustomerViewQuery customerViewQuery,
+    private static CustomerBareDTO mapToCustomerBareDTO(final CustomerQueryView customerQueryView,
                                                         final CustomerNameDTO customerNameDTO) {
 
         CustomerBareDTO customerBareDTO = new CustomerBareDTO();
-        customerBareDTO.setEmailId(customerViewQuery.getEmailId());
-        customerBareDTO.setAge(customerViewQuery.getAge());
-        customerBareDTO.setFavouriteColour(customerViewQuery.getFavouriteColour());
+        customerBareDTO.setEmailId(customerQueryView.getEmailId());
+        customerBareDTO.setAge(customerQueryView.getAge());
+        customerBareDTO.setFavouriteColour(customerQueryView.getFavouriteColour());
         customerBareDTO.setCustomerName(customerNameDTO);
         return customerBareDTO;
     }
