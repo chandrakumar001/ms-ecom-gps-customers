@@ -20,7 +20,7 @@ public class CustomerQueryViewMapper {
 
         CustomerListResponseDTO customerListResponseDTO = new CustomerListResponseDTO();
         customerListResponseDTO.setCount(customerDTOList.size());
-        customerListResponseDTO.setCustomer(customerDTOList);
+        customerListResponseDTO.setCustomers(customerDTOList);
         return customerListResponseDTO;
     }
 

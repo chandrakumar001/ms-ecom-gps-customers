@@ -44,7 +44,7 @@ class DefaultCustomerQueryControllerSpec extends Specification {
 
         List<CustomerDTO> customerDTOList = customerDTOs()
         final CustomerListResponseDTO customerListResponseDTO = new CustomerListResponseDTO()
-        customerListResponseDTO.customer = customerDTOList
+        customerListResponseDTO.customers = customerDTOList
         customerListResponseDTO.count = customerDTOList.size()
 
         queryService.getAllCustomer(_ as Integer, _ as Integer) >> customerListResponseDTO
@@ -103,7 +103,7 @@ class DefaultCustomerQueryControllerSpec extends Specification {
                 actualResponse,
                 CustomerListResponseDTO.class
         )
-        List<CustomerDTO> customerDTOList = customerListResponseDTO.getCustomer()
+        List<CustomerDTO> customerDTOList = customerListResponseDTO.getCustomers()
         customerDTOList
     }
 }

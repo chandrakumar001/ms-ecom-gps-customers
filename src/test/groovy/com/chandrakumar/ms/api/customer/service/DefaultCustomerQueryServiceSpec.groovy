@@ -57,7 +57,7 @@ class DefaultCustomerQueryServiceSpec extends Specification {
 
         then: "the ID is correctly logged"
         customerDTOList.count == CUSTOMER_TOTAL_COUNT
-        CustomerDTO customerDTO = customerDTOList?.customer?.get(FIRST_INDEX);
+        CustomerDTO customerDTO = customerDTOList?.customers?.get(FIRST_INDEX);
         customerDTO?.data?.emailId == emailId
         customerDTO?.data?.age == age
     }

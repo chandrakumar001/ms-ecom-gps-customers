@@ -159,7 +159,7 @@ components:
         count:
           type: integer
           example: 15
-        customer:
+        customers:
           type: array
           items:
             $ref: "#/components/schemas/customer"
